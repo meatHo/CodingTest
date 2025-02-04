@@ -39,3 +39,45 @@ class Solution {
 
     }
 }
+
+import java.util.*;
+
+class Solution {
+    public int solution(int n, int[][] costs) {
+        int res = 0;
+        List<List<int[]>> nodes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            nodes.add(new ArrayList<>());
+        }
+        for (int i = 0; i < costs.length; i++) {
+            int node1 = costs[i][0];
+            int node2 = costs[i][1];
+            int cost = costs[i][2];
+            nodes.get(node1).add(new int[] { node2, cost });
+            nodes.get(node2).add(new int[] { node1, cost });
+        }
+
+        boolean[] visited = new boolean[n];
+
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);// cost 낮은 순
+        pq.addAll(nodes.get(0));
+        visited[0] = true;
+        int node = 0;
+        while (node < n - 1) {// 방문된 노드 갯수 변수 선언해서 그거로 종료 선언
+            int[] cur = pq.poll();
+            if (visited[cur[0]]) {// 이미 방문된 노드
+                continue;
+            }
+            visited[cur[0]] = true;
+            res += cur[1];
+            node++;
+            for (int[] i : nodes.get(cur[0])) {
+                pq.add(i);
+            }
+
+        }
+
+        return res;
+
+    }
+}

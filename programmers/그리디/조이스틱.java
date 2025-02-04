@@ -41,8 +41,51 @@ class Solution {
             }
             int back = len - next;
             move = Math.min(move, Math.min(2 * i + back, 2 * back + i));
+            // min = Math.min(min, i + length - next + Math.min(i, length - next));
         }
 
         return move + res;
+    }
+}
+
+class Solution {
+    public int solution(String name) {
+        int res = 0;
+        int len = name.length();
+        char[] na = new char[len];
+        for (int i = 0; i < len; i++) {
+            na[i] = name.charAt(i);
+        }
+
+        int i = 0;
+        int left = 0, right = 0;
+        int before = -100;
+        while (true) {
+            before = i;
+            res = res + Math.min(na[i] - 'A', 'Z' - na[i]);
+            na[i] = 'A';
+
+            // 반복문 써서 left right 작은거 찾은 다음 그거를 다음 i와 left, right로 설정
+            for (int k = 0; k < len; k++) {
+                if (left - 1 == -1)
+                    left = len - 1;
+                else
+                    left = left - 1;
+
+                right = (right + 1) % len;
+
+                if (na[left] != 'A' || na[right] != 'A') {
+                    break;
+                }
+            }
+            if (left == right) {
+                break;
+            }
+            i = Math.min(left, right);
+            res += i;
+            left = i;
+            right = i;
+        }
+        return res;
     }
 }
