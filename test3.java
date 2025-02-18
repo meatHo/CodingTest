@@ -22,5 +22,9 @@ public class test3 {
             graph.add(new int[2]);
         }
 
+        List<int[]> testlist = new ArrayList<>();
+        testlist.add(new int[] { 1, 3 });
+        System.out.println(testlist.contains(int[] { 1, 3 }));
+
     }
 }
