@@ -24,7 +24,7 @@ public class test3 {
 
         List<int[]> testlist = new ArrayList<>();
         testlist.add(new int[] { 1, 3 });
-        System.out.println(testlist.contains(int[] { 1, 3 }));
-
+        System.out.print(1);
+        System.out.print(2);
     }
 }
