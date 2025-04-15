@@ -45,3 +45,44 @@ public class Main {
 
     }
 }
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine()); // 테스트 케이스 수
+
+        while (T-- > 0) {
+            String input = br.readLine();
+            Deque<Character> left = new LinkedList<>();
+            Deque<Character> right = new LinkedList<>();
+
+            for (char c : input.toCharArray()) {
+                if (c == '<') {
+                    if (!left.isEmpty()) {
+                        right.push(left.pollLast());
+                    }
+                } else if (c == '>') {
+                    if (!right.isEmpty()) {
+                        left.addLast(right.pop());
+                    }
+                } else if (c == '-') {
+                    if (!left.isEmpty()) {
+                        left.pollLast();
+                    }
+                } else {
+                    left.addLast(c);
+                }
+            }
+
+            StringBuilder sb = new StringBuilder();
+            for (char ch : left)
+                sb.append(ch);
+            while (!right.isEmpty())
+                sb.append(right.pop());
+            System.out.println(sb);
+        }
+    }
+}
