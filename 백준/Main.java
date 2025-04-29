@@ -1,47 +1,28 @@
 import java.util.*;
 import java.io.*;
 
-//5397
+//1697
 //
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int koh = Integer.parseInt(br.readLine());
-        for (int koh1 = 0; koh1 < koh; koh1++) {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-            char[] inputs = br.readLine().trim().toCharArray();
-            Stack<Character> left = new Stack<>();
-            Stack<Character> right = new Stack<>();
-            for (char c : inputs) {
-                if (c == '<') {
-                    if (!left.isEmpty()) {
-                        right.add(left.pop());
-                    }
-                } else if (c == '>') {
-                    if (!right.isEmpty()) {
-                        left.add(right.pop());
-                    }
-                } else if (c == '-') {
-                    if (!left.isEmpty()) {
-                        left.pop();
-                    }
-                } else {
-                    left.add(c);
-                }
-            }
-            StringBuilder sb = new StringBuilder();
-            for (char c : left) {
-                sb.append(c);
-            }
-            while (!right.isEmpty()) {
-                sb.append(right.pop());
-            }
-            bw.write(sb.toString() + "\n");
-            bw.flush();
-
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int house = Integer.parseInt(st.nextToken());
+        int wifi = Integer.parseInt(st.nextToken());
+        int[] wifis = new int[wifi];
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < wifi; i++) {
+            int temp = Integer.parseInt(br.readLine());
+            wifis[i] = temp;
+            min = Math.min(min, temp);
+            max = Math.max(max, temp);
         }
+        Arrays.sort(wifis);// 1 2 4 8 9
 
     }
+
 }
