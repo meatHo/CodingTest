@@ -12,6 +12,7 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
 
         long[][] dp = new long[N + 1][10];
+        // dp[i][j]는 i자리 수이면서 마지막 자릿수가 j인 계단수
 
         // 1자리 수 초기화 (0으로 시작 불가)
         for (int i = 1; i <= 9; i++) {
